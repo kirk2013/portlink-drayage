@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 type Lang = "en" | "zh";
@@ -52,7 +52,7 @@ const copy = {
     nav: ["拖柜服务", "服务区域", "中国客户", "车队合作"],
     quote: "获取报价",
     track: "查询柜子进度",
-    eyebrow: "纽约／新泽西港拖柜 • 覆盖PA、NJ、NY",
+    eyebrow: "美国纽约／新泽西港拖柜 · 覆盖宾州、新泽西州和纽约地区",
     title: <>纽约／新泽西港拖柜<br/><em>全流程统一管理</em></>,
     sub: "从码头协调、运力安排、仓库交付到文件归档与还空，由一个运营窗口负责。覆盖新泽西、宾州东部及纽约都会区。",
     primary: "获取拖柜报价",
@@ -98,6 +98,13 @@ export default function Home() {
   const [menu, setMenu] = useState(false);
   const [tracking, setTracking] = useState(false);
   const t = copy[lang];
+
+  useEffect(() => {
+    document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+    document.title = lang === "zh" ? "PortLink｜纽约／新泽西港拖柜服务" : "PortLink | Managed NY/NJ Port Drayage";
+    const description = document.querySelector('meta[name="description"]');
+    description?.setAttribute("content", lang === "zh" ? "面向中国跨境企业的纽约／新泽西港拖柜服务，覆盖宾州、新泽西州和纽约地区。" : "Managed NY/NJ port drayage with one accountable operating team, milestone visibility, and documented execution.");
+  }, [lang]);
 
   const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   const mail = (subject: string, body: string) => {
