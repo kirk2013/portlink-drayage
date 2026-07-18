@@ -139,9 +139,20 @@ export default function Home() {
 
     <section className="factbar">{t.facts.map(([n,l]) => <div key={l}><strong>{n}</strong><span>{l}</span></div>)}</section>
 
+    <section className="proof-strip" aria-label={lang === "zh" ? "服务标准" : "Operating standards"}>
+      {(lang === "zh" ? ["放行与LFD持续核查", "码头及仓库预约协调", "POD与EIR文件归档", "异常与附加费证据管理"] : ["Release & LFD control", "Terminal & warehouse appointments", "POD & EIR discipline", "Exception & accessorial evidence"]).map((item, i) => <div key={item}><span>0{i + 1}</span><b>{item}</b></div>)}
+    </section>
+
     <section className="services section" id="services">
       <div className="section-top"><div><p className="kicker">{t.servicesKicker}</p><h2>{t.servicesTitle}</h2></div><p>{t.servicesIntro}</p></div>
       <div className="service-cards">{t.services.map(([n,h,p]) => <article key={n}><span>{n}</span><h3>{h}</h3><p>{p}</p></article>)}</div>
+    </section>
+
+    <section className="workflow section">
+      <div className="workflow-heading"><p className="kicker">{lang === "zh" ? "标准执行流程" : "STANDARD EXECUTION"}</p><h2>{lang === "zh" ? "每个柜子，都按同一套节点推进。" : "Every container moves through a defined operating sequence."}</h2></div>
+      <div className="workflow-steps">
+        {(lang === "zh" ? [["01","接收资料","柜号、码头、送货地址与时间要求"],["02","核查条件","放行、Hold、LFD、预约与设备"],["03","确认运力","匹配合规车队、司机与车辆"],["04","执行运输","提柜、送仓、签收与异常同步"],["05","完成闭环","POD、EIR、还空与费用核对"]] : [["01","Receive","Container, terminal, delivery point, and timing"],["02","Validate","Release, holds, LFD, appointments, and equipment"],["03","Assign","Compliant carrier, driver, and equipment"],["04","Execute","Pickup, delivery, milestones, and escalation"],["05","Close","POD, EIR, empty return, and charge review"]]).map(([n,h,p]) => <article key={n}><span>{n}</span><h3>{h}</h3><p>{p}</p></article>)}
+      </div>
     </section>
 
     <section className="coverage section" id="coverage">
@@ -154,6 +165,11 @@ export default function Home() {
     <section className="china section" id="china">
       <div className="china-copy"><p className="kicker">{t.chinaKicker}</p><h2>{t.chinaTitle}</h2><p>{t.chinaText}</p></div>
       <div className="china-points">{t.chinaPoints.map((x,i) => <div key={x}><span>0{i+1}</span><b>{x}</b></div>)}</div>
+    </section>
+
+    <section className="control section">
+      <div className="control-copy"><p className="kicker">{lang === "zh" ? "费用与异常控制" : "DOCUMENTED EXCEPTIONS"}</p><h2>{lang === "zh" ? "附加费不能只凭一句话。" : "Accessorials should come with evidence."}</h2><p>{lang === "zh" ? "等待费、底盘拆分、Pre-pull、堆存等费用会影响每柜成本。PortLink要求保留时间、照片、EIR、仓库签字或其他可核查依据，再完成费用确认。" : "Waiting time, chassis splits, pre-pulls, storage, and other accessorials can materially change landed cost. PortLink organizes timestamps, photos, EIRs, signatures, and other available support before charge review."}</p></div>
+      <div className="evidence-list">{(lang === "zh" ? [["01","到达与离开时间"],["02","POD／EIR／仓库签字"],["03","照片与码头文件"],["04","收费项目及审批记录"]] : [["01","Arrival and departure times"],["02","POD, EIR, and signatures"],["03","Photos and terminal documents"],["04","Charge detail and approval trail"]]).map(([n,x]) => <div key={n}><span>{n}</span><b>{x}</b><i>↗</i></div>)}</div>
     </section>
 
     <section className="carrier section" id="carriers">
