@@ -9,10 +9,10 @@ const copy = {
   en: {
     nav: ["Services", "Coverage", "Why PortLink", "Carriers"],
     quote: "Request a Quote",
-    track: "Request a Status Update",
+    track: "Track a Shipment",
     eyebrow: "NY/NJ PORT DRAYAGE • PA / NJ / NY",
     title: <>NY/NJ port drayage.<br/><em>Managed end to end.</em></>,
-    sub: "A single operating partner for terminal coordination, carrier execution, warehouse delivery, documentation, and empty return across New Jersey, Eastern Pennsylvania, and the New York metro area.",
+    sub: "One accountable U.S. operating team for terminal coordination, compliant carrier capacity, warehouse delivery, documentation, and empty return across New Jersey, Eastern Pennsylvania, and the New York metro area.",
     primary: "Get a Drayage Quote",
     secondary: "See Our Coverage",
     facts: [["6", "major NY/NJ terminals"], ["3", "core delivery markets"], ["1", "accountable operating team"]],
@@ -29,22 +29,22 @@ const copy = {
     coverageText: "Focused lanes create better carrier coverage, faster exception handling, and more consistent execution than a broad directory of phone numbers.",
     terminals: "Port Newark • Elizabeth • APM • Maher • PNCT • GCT Bayonne",
     markets: [["New Jersey", "North, Central, and key warehouse corridors"], ["Pennsylvania", "Bethlehem, Allentown, Lehigh Valley, and Eastern PA"], ["New York", "Metro-area delivery by lane review"]],
-    chinaKicker: "FOR IMPORTERS & LOGISTICS TEAMS",
-    chinaTitle: "Local execution without the usual blind spots.",
-    chinaText: "PortLink gives importers, forwarders, and warehouse teams one operating window for pricing, scheduling, milestones, documents, and exception management.",
-    chinaPoints: ["One accountable team", "Clear quote and charge review", "Direct milestone communication", "Warehouse coordination"],
+    chinaKicker: "BUILT FOR U.S. SUPPLY CHAINS",
+    chinaTitle: "A dependable local operating layer for every import move.",
+    chinaText: "Importers, freight forwarders, warehouses, and retail teams get one point of contact for lane planning, execution, milestone communication, documents, and exception management.",
+    chinaPoints: ["Single point of accountability", "Defined operating milestones", "Documented charge review", "Warehouse appointment control"],
     carrierKicker: "CARRIER PARTNERS",
     carrierTitle: "Reliable freight for carriers who execute well.",
     carrierText: "We work with compliant motor carriers and qualified owner-operators who value clear dispatch, fast communication, clean documentation, and long-term volume.",
     join: "Join the Carrier Network",
     quoteKicker: "START WITH ONE LANE",
-    quoteTitle: "Tell us what needs to move.",
-    quoteText: "Share the terminal, delivery ZIP code, container type, and timing. Our U.S. team will review the lane and respond with a clear plan.",
-    fields: ["Name", "Work email", "Company", "Terminal, delivery ZIP, container type, timing"],
-    send: "Prepare Quote Request",
+    quoteTitle: "Request a lane review and drayage quote.",
+    quoteText: "Provide the operating details below. Our team will review terminal, equipment, timing, delivery requirements, and likely accessorial exposure before responding.",
+    fields: ["Name", "Work email", "Company", "Additional operating details"],
+    send: "Submit Quote Request",
     emailNote: "Your email app will open with the request prepared.",
-    trackTitle: "Request a container status update",
-    trackText: "Enter the container number and your email. Our operations team will verify the latest available status.",
+    trackTitle: "Track a shipment",
+    trackText: "Enter the container number and your work email. Our operations team will verify the latest available milestone and respond directly.",
     container: "Container number",
     footer: "Managed NY/NJ port drayage. One team. Clear ownership."
   },
@@ -113,7 +113,7 @@ export default function Home() {
   const submitQuote = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const d = new FormData(e.currentTarget);
-    mail(`PortLink quote request — ${d.get("company") || d.get("name")}`, `Name: ${d.get("name")}\nEmail: ${d.get("email")}\nCompany: ${d.get("company")}\n\nLane details:\n${d.get("details")}`);
+    mail(`PortLink quote request — ${d.get("company") || d.get("name")}`, `Name: ${d.get("name")}\nEmail: ${d.get("email")}\nCompany: ${d.get("company")}\nTerminal: ${d.get("terminal") || "Not provided"}\nDelivery ZIP: ${d.get("zip") || "Not provided"}\nContainer: ${d.get("containerType") || "Not provided"}\nEstimated weight: ${d.get("weight") || "Not provided"}\nTiming / LFD: ${d.get("timing") || "Not provided"}\nUnload method: ${d.get("unload") || "Not provided"}\nVolume: ${d.get("volume") || "Not provided"}\n\nAdditional details:\n${d.get("details") || "None"}`);
   };
   const submitTrack = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -151,7 +151,7 @@ export default function Home() {
     <section className="factbar">{t.facts.map(([n,l]) => <div key={l}><strong>{n}</strong><span>{l}</span></div>)}</section>
 
     <section className="proof-strip" aria-label={lang === "zh" ? "服务标准" : "Operating standards"}>
-      {(lang === "zh" ? ["放行与LFD持续核查", "码头及仓库预约协调", "POD与EIR文件归档", "异常与附加费证据管理"] : ["Release & LFD control", "Terminal & warehouse appointments", "POD & EIR discipline", "Exception & accessorial evidence"]).map((item, i) => <div key={item}><span>0{i + 1}</span><b>{item}</b></div>)}
+      {(lang === "zh" ? ["放行与LFD持续核查", "码头及仓库预约协调", "POD与EIR文件归档", "异常与附加费证据管理"] : ["Release, hold & LFD monitoring", "Terminal and delivery appointments", "POD, EIR & empty-return control", "Documented exception management"]).map((item, i) => <div key={item}><span>0{i + 1}</span><b>{item}</b></div>)}
     </section>
 
     <section className="trust-panel section">
@@ -219,7 +219,16 @@ export default function Home() {
         <div><label>{t.fields[0]}</label><input name="name" required /></div>
         <div><label>{t.fields[1]}</label><input name="email" type="email" required /></div>
         <div className="wide"><label>{t.fields[2]}</label><input name="company" required /></div>
-        <div className="wide"><label>{t.fields[3]}</label><textarea name="details" rows={4} required /></div>
+        {lang === "en" && <>
+          <div><label>Pickup terminal</label><select name="terminal" required defaultValue=""><option value="" disabled>Select terminal</option><option>Port Newark / Elizabeth</option><option>APM Terminals</option><option>Maher Terminals</option><option>PNCT</option><option>GCT Bayonne</option><option>Other / not yet confirmed</option></select></div>
+          <div><label>Delivery ZIP code</label><input name="zip" inputMode="numeric" required /></div>
+          <div><label>Container type</label><select name="containerType" required defaultValue=""><option value="" disabled>Select equipment</option><option>20&apos; dry</option><option>40&apos; dry</option><option>40&apos; high cube</option><option>Reefer</option><option>Other / special equipment</option></select></div>
+          <div><label>Estimated gross weight</label><input name="weight" placeholder="e.g. 39,500 lb" /></div>
+          <div><label>Ready date / LFD</label><input name="timing" placeholder="Date or timing requirement" required /></div>
+          <div><label>Unload method</label><select name="unload" defaultValue=""><option value="" disabled>Select method</option><option>Live unload</option><option>Drop and hook</option><option>Warehouse to confirm</option></select></div>
+          <div className="wide"><label>Expected volume</label><select name="volume" defaultValue=""><option value="" disabled>Select volume</option><option>Single shipment</option><option>2–5 containers per month</option><option>6–20 containers per month</option><option>20+ containers per month</option></select></div>
+        </>}
+        <div className="wide"><label>{t.fields[3]}</label><textarea name="details" rows={4} required={lang === "zh"} placeholder={lang === "en" ? "Commodity, appointment constraints, special equipment, overweight requirements, or recurring lane details" : undefined} /></div>
         <p className="note">{t.emailNote}</p><button className="solid" type="submit">{t.send}</button>
       </form>
     </section>
