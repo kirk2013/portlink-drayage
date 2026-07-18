@@ -115,6 +115,10 @@ export default function Home() {
   };
 
   return <main>
+    <div className="utility-bar">
+      <span>{lang === "zh" ? "纽约／新泽西港拖柜运营" : "NY/NJ PORT DRAYAGE OPERATIONS"}</span>
+      <div><a href="mailto:operations@portlink.com">operations@portlink.com</a><span>{lang === "zh" ? "美国东部时间" : "EASTERN TIME"}</span></div>
+    </div>
     <header className="header">
       <a className="logo" href="#top"><span>P</span><b>PortLink</b></a>
       <button className="menu" onClick={() => setMenu(!menu)}>{menu ? "×" : "☰"}</button>
