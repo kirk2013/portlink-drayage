@@ -1,12 +1,13 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { usePathname } from "next/navigation";
 
 type Lang = "en" | "zh";
 
 const copy = {
   en: {
-    nav: ["Services", "Coverage", "For China Teams", "Carriers"],
+    nav: ["Services", "Coverage", "Why PortLink", "Carriers"],
     quote: "Request a Quote",
     track: "Request a Status Update",
     eyebrow: "NY/NJ PORT DRAYAGE • PA / NJ / NY",
@@ -14,7 +15,7 @@ const copy = {
     sub: "PortLink manages the handoff from terminal to warehouse with one accountable U.S. operations team, vetted capacity, and clear communication at every milestone.",
     primary: "Get a Drayage Quote",
     secondary: "See Our Coverage",
-    facts: [["6", "major NY/NJ terminals"], ["3", "core delivery markets"], ["EN / 中文", "bilingual coordination"]],
+    facts: [["6", "major NY/NJ terminals"], ["3", "core delivery markets"], ["1", "accountable operating team"]],
     servicesKicker: "MANAGED DRAYAGE",
     servicesTitle: "One operating team from port release to empty return.",
     servicesIntro: "We do more than dispatch a truck. PortLink coordinates the terminal, carrier, driver, warehouse appointment, documents, and exceptions—so your team always knows who owns the next step.",
@@ -28,10 +29,10 @@ const copy = {
     coverageText: "Focused lanes create better carrier coverage, faster exception handling, and more consistent execution than a broad directory of phone numbers.",
     terminals: "Port Newark • Elizabeth • APM • Maher • PNCT • GCT Bayonne",
     markets: [["New Jersey", "North, Central, and key warehouse corridors"], ["Pennsylvania", "Bethlehem, Allentown, Lehigh Valley, and Eastern PA"], ["New York", "Metro-area delivery by lane review"]],
-    chinaKicker: "FOR CHINA-BASED IMPORTERS",
-    chinaTitle: "U.S. local execution without another layer of confusion.",
-    chinaText: "Keep your warehouse relationship, but take control of the drayage. PortLink gives cross-border teams a direct U.S. operating window for pricing, scheduling, status, documents, and exception management.",
-    chinaPoints: ["Bilingual operating support", "Clear quote and charge review", "Direct milestone communication", "U.S. warehouse coordination"],
+    chinaKicker: "FOR IMPORTERS & LOGISTICS TEAMS",
+    chinaTitle: "Local execution without the usual blind spots.",
+    chinaText: "PortLink gives importers, forwarders, and warehouse teams one operating window for pricing, scheduling, milestones, documents, and exception management.",
+    chinaPoints: ["One accountable team", "Clear quote and charge review", "Direct milestone communication", "Warehouse coordination"],
     carrierKicker: "CARRIER PARTNERS",
     carrierTitle: "Reliable freight for carriers who execute well.",
     carrierText: "We work with compliant motor carriers and qualified owner-operators who value clear dispatch, fast communication, clean documentation, and long-term volume.",
@@ -56,7 +57,7 @@ const copy = {
     sub: "从码头放行、提柜、送仓到还空，由美国本地运营团队统一协调。中文直接沟通，费用提前讲清，进度不用层层追问。",
     primary: "获取拖柜报价",
     secondary: "查看服务区域",
-    facts: [["6", "纽约／新泽西主要码头"], ["3", "核心配送区域"], ["中 / EN", "中美双语协调"]],
+    facts: [["6", "纽约／新泽西主要码头"], ["3", "核心配送区域"], ["1", "统一运营窗口"]],
     servicesKicker: "全流程拖柜管理",
     servicesTitle: "不是只帮您找辆车，而是把整个拖柜流程管起来。",
     servicesIntro: "PortLink统一对接码头、车队、司机和收货仓。从LFD、预约到POD、EIR和还空，每一步都有明确负责人，发生异常也有人在美国现场协调。",
@@ -92,7 +93,8 @@ const copy = {
 };
 
 export default function Home() {
-  const [lang, setLang] = useState<Lang>("en");
+  const pathname = usePathname();
+  const lang: Lang = pathname.startsWith("/zh") ? "zh" : "en";
   const [menu, setMenu] = useState(false);
   const [tracking, setTracking] = useState(false);
   const t = copy[lang];
@@ -120,7 +122,6 @@ export default function Home() {
         {t.nav.map((x, i) => <button key={x} onClick={() => { go(["services","coverage","china","carriers"][i]); setMenu(false); }}>{x}</button>)}
       </nav>
       <div className="actions">
-        <div className="langs"><button className={lang==="en"?"active":""} onClick={() => setLang("en")}>EN</button><span>/</span><button className={lang==="zh"?"active":""} onClick={() => setLang("zh")}>中文</button></div>
         <button className="link-button" onClick={() => setTracking(true)}>{t.track}</button>
         <button className="solid small" onClick={() => go("quote")}>{t.quote}</button>
       </div>
