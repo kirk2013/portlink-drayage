@@ -147,6 +147,11 @@ export default function Home() {
       {(lang === "zh" ? ["放行与LFD持续核查", "码头及仓库预约协调", "POD与EIR文件归档", "异常与附加费证据管理"] : ["Release & LFD control", "Terminal & warehouse appointments", "POD & EIR discipline", "Exception & accessorial evidence"]).map((item, i) => <div key={item}><span>0{i + 1}</span><b>{item}</b></div>)}
     </section>
 
+    <section className="trust-panel section">
+      <div><p className="kicker">{lang === "zh" ? "统一运营责任" : "ONE OPERATING STANDARD"}</p><h2>{lang === "zh" ? "让拖柜服务更容易采购，也更容易管理。" : "Drayage that is easier to buy—and easier to manage."}</h2></div>
+      <div className="trust-list">{(lang === "zh" ? [["01","统一负责人","从提柜到还空，由同一个运营窗口推进。"],["02","合规运力","根据线路、设备和时间要求安排合格承运资源。"],["03","关键节点","重要状态、异常和文件按照统一标准同步。"],["04","费用证据","等待费等附加费用依据可核查记录进行审核。"]] : [["01","Accountable desk","One operating point from container release through empty return."],["02","Qualified capacity","Carrier assignments reviewed against lane, equipment, and timing."],["03","Milestone discipline","Critical status, exceptions, and documents follow one standard."],["04","Charge support","Accessorial review organized around available operational evidence."]]).map(([n,h,p]) => <article key={n}><span>{n}</span><div><h3>{h}</h3><p>{p}</p></div></article>)}</div>
+    </section>
+
     <section className="services section" id="services">
       <div className="section-top"><div><p className="kicker">{t.servicesKicker}</p><h2>{t.servicesTitle}</h2></div><p>{t.servicesIntro}</p></div>
       <div className="service-cards">{t.services.map(([n,h,p]) => <article key={n}><span>{n}</span><h3>{h}</h3><p>{p}</p></article>)}</div>
