@@ -80,6 +80,13 @@ p{line-height:1.65}
 .capability-grid span{font-size:11px;color:#187c78}
 .capability-grid h3{font-size:23px;margin:54px 0 10px}
 .capability-grid p{color:#5b6c6e;margin:0;font-size:15px}
+.sectors{display:grid;grid-template-columns:.8fr 1.2fr;gap:10vw;background:#091719}
+.sectors-title{position:sticky;top:50px;align-self:start}
+.sector-list{border-top:1px solid var(--line)}
+.sector-list article{display:grid;grid-template-columns:52px 1fr;gap:20px;padding:32px 0;border-bottom:1px solid var(--line)}
+.sector-list article>span{color:var(--teal);font-size:11px;padding-top:7px}
+.sector-list h3{font-size:25px;margin:0 0 7px}
+.sector-list p{margin:0;font-size:15px;max-width:650px}
 .coverage{padding:0;display:grid;grid-template-columns:45% 55%;background:var(--cream);color:#071113}
 .coverage-photo{min-height:850px;background:linear-gradient(0deg,rgba(5,18,20,.35),rgba(5,18,20,.08)),url('/assets/portlink-terminal.png') center/cover;position:relative}
 .coverage-photo>div{position:absolute;left:55px;bottom:55px;background:#071719;color:white;padding:26px 30px}
@@ -104,6 +111,23 @@ p{line-height:1.65}
 .evidence-list span{font-size:11px;color:#138d88}
 .evidence-list b{font-size:17px}
 .evidence-list i{font-style:normal;color:#138d88;font-size:20px}
+.engagement{background:#10272b}
+.engagement-head{display:grid;grid-template-columns:.65fr 1.35fr;gap:8vw}
+.engagement-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:70px;border-top:1px solid var(--line)}
+.engagement-grid article{padding:30px 35px 20px 0;border-right:1px solid var(--line);min-height:255px}
+.engagement-grid article+article{padding-left:35px}
+.engagement-grid article:last-child{border:0}
+.engagement-grid span{font-size:11px;color:var(--teal)}
+.engagement-grid h3{font-size:24px;margin:58px 0 10px}
+.engagement-grid p{font-size:15px;margin:0}
+.faq{display:grid;grid-template-columns:.75fr 1.25fr;gap:10vw;background:#071216}
+.faq-list{border-top:1px solid var(--line)}
+.faq-list details{border-bottom:1px solid var(--line);padding:0}
+.faq-list summary{list-style:none;min-height:88px;display:flex;align-items:center;justify-content:space-between;gap:25px;font-size:19px;font-weight:700;cursor:pointer}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary span{font-size:26px;color:var(--teal);font-weight:400;transition:.2s transform}
+.faq-list details[open] summary span{transform:rotate(45deg)}
+.faq-list details p{margin:0 0 28px;max-width:760px;font-size:15px}
 .carrier{background:var(--teal);color:#061315;display:flex;justify-content:space-between;align-items:end;gap:70px}
 .carrier>div{max-width:980px}
 .carrier .kicker{color:#164e4d}
@@ -143,13 +167,17 @@ footer{padding:70px max(34px,6vw) 28px;display:grid;grid-template-columns:1.3fr 
 .hero-photo{min-height:590px}
 .proof-strip{grid-template-columns:1fr 1fr}
 .proof-strip div:nth-child(2){border-right:0}
-.section-top,.workflow-heading,.capabilities-head{grid-template-columns:1fr;gap:30px}
+.section-top,.workflow-heading,.capabilities-head,.engagement-head{grid-template-columns:1fr;gap:30px}
 .workflow-steps{grid-template-columns:1fr 1fr}
 .workflow-steps article{border-bottom:1px solid var(--line)}
 .capability-grid{grid-template-columns:1fr 1fr}
 .coverage{grid-template-columns:1fr}
 .coverage-photo{min-height:580px}
-.china,.control{grid-template-columns:1fr}
+.china,.control,.sectors,.faq{grid-template-columns:1fr}
+.sectors-title{position:static}
+.engagement-grid{grid-template-columns:1fr}
+.engagement-grid article,.engagement-grid article+article{padding:28px 0;min-height:auto;border-right:0;border-bottom:1px solid var(--line)}
+.engagement-grid h3{margin:25px 0 7px}
 .carrier{align-items:flex-start;flex-direction:column}
 }
 

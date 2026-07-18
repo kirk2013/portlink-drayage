@@ -148,7 +148,7 @@ export default function Home() {
       <div className="service-cards">{t.services.map(([n,h,p]) => <article key={n}><span>{n}</span><h3>{h}</h3><p>{p}</p></article>)}</div>
     </section>
 
-    <section className="workflow section">
+    <section className="workflow section" id="standards">
       <div className="workflow-heading"><p className="kicker">{lang === "zh" ? "标准执行流程" : "STANDARD EXECUTION"}</p><h2>{lang === "zh" ? "每个柜子，都按同一套节点推进。" : "Every container moves through a defined operating sequence."}</h2></div>
       <div className="workflow-steps">
         {(lang === "zh" ? [["01","接收资料","柜号、码头、送货地址与时间要求"],["02","核查条件","放行、Hold、LFD、预约与设备"],["03","确认运力","匹配合规车队、司机与车辆"],["04","执行运输","提柜、送仓、签收与异常同步"],["05","完成闭环","POD、EIR、还空与费用核对"]] : [["01","Receive","Container, terminal, delivery point, and timing"],["02","Validate","Release, holds, LFD, appointments, and equipment"],["03","Assign","Compliant carrier, driver, and equipment"],["04","Execute","Pickup, delivery, milestones, and escalation"],["05","Close","POD, EIR, empty return, and charge review"]]).map(([n,h,p]) => <article key={n}><span>{n}</span><h3>{h}</h3><p>{p}</p></article>)}
@@ -158,6 +158,11 @@ export default function Home() {
     <section className="capabilities section">
       <div className="capabilities-head"><div><p className="kicker">{lang === "zh" ? "核心服务能力" : "CORE CAPABILITIES"}</p><h2>{lang === "zh" ? "围绕每一票进口柜，提供完整执行支持。" : "The operating capabilities behind every import move."}</h2></div><p>{lang === "zh" ? "根据具体码头、路线、设备和仓库要求确认服务方案。所有节点由统一运营窗口协调。" : "Service plans are confirmed by terminal, lane, equipment, timing, and warehouse requirements—with one operating desk coordinating the full move."}</p></div>
       <div className="capability-grid">{(lang === "zh" ? [["码头协调","放行、Hold、LFD及提柜预约"],["仓库交付","预约、Live unload与Drop协调"],["设备安排","标准柜、超重及特殊底盘需求"],["Pre-pull管理","降低LFD与码头拥堵风险"],["还空跟踪","空柜场、截止时间及EIR归档"],["文件与费用","POD、EIR及附加费证据审核"]] : [["Terminal coordination","Release, holds, LFD, and pickup appointments"],["Warehouse delivery","Appointments, live unload, and drop coordination"],["Equipment planning","Standard, overweight, and chassis requirements"],["Pre-pull management","Planning around LFD and terminal congestion"],["Empty return control","Return location, cutoffs, and EIR records"],["Documents & charges","POD, EIR, and accessorial support review"]]).map(([h,p],i) => <article key={h}><span>0{i+1}</span><h3>{h}</h3><p>{p}</p></article>)}</div>
+    </section>
+
+    <section className="sectors section">
+      <div className="sectors-title"><p className="kicker">{lang === "zh" ? "客户类型" : "WHO WE SUPPORT"}</p><h2>{lang === "zh" ? "为需要美国本地拖柜执行能力的团队服务。" : "Built for teams that need dependable local drayage execution."}</h2></div>
+      <div className="sector-list">{(lang === "zh" ? [["跨境电商与品牌方","在中国管理美国进口货物，需要中文沟通、清晰报价和美国本地异常处理。"],["进口商与出口企业","需要稳定完成港到仓运输，并集中管理节点、文件和额外费用。"],["货代与物流服务商","需要纽约港本地执行伙伴，为客户提供可追踪、可交付的拖柜服务。"],["海外仓与履约企业","需要协调码头提柜、仓库预约、Drop或Live unload，并降低沟通成本。"]] : [["Importers","Teams that need consistent port-to-warehouse execution and one point of operating accountability."],["Freight forwarders","Partners seeking dependable NY/NJ drayage capacity, milestone communication, and documentation."],["Warehouses & 3PLs","Facilities coordinating appointments, live unloads, drops, and recurring inbound container volume."],["E-commerce & retail","Import programs requiring clear delivery planning, exception escalation, and document control."]]).map(([h,p],i) => <article key={h}><span>0{i+1}</span><div><h3>{h}</h3><p>{p}</p></div></article>)}</div>
     </section>
 
     <section className="coverage section" id="coverage">
@@ -175,6 +180,16 @@ export default function Home() {
     <section className="control section">
       <div className="control-copy"><p className="kicker">{lang === "zh" ? "费用与异常控制" : "DOCUMENTED EXCEPTIONS"}</p><h2>{lang === "zh" ? "附加费不能只凭一句话。" : "Accessorials should come with evidence."}</h2><p>{lang === "zh" ? "等待费、底盘拆分、Pre-pull、堆存等费用会影响每柜成本。PortLink要求保留时间、照片、EIR、仓库签字或其他可核查依据，再完成费用确认。" : "Waiting time, chassis splits, pre-pulls, storage, and other accessorials can materially change landed cost. PortLink organizes timestamps, photos, EIRs, signatures, and other available support before charge review."}</p></div>
       <div className="evidence-list">{(lang === "zh" ? [["01","到达与离开时间"],["02","POD／EIR／仓库签字"],["03","照片与码头文件"],["04","收费项目及审批记录"]] : [["01","Arrival and departure times"],["02","POD, EIR, and signatures"],["03","Photos and terminal documents"],["04","Charge detail and approval trail"]]).map(([n,x]) => <div key={n}><span>{n}</span><b>{x}</b><i>↗</i></div>)}</div>
+    </section>
+
+    <section className="engagement section">
+      <div className="engagement-head"><p className="kicker">{lang === "zh" ? "合作启动" : "ENGAGEMENT MODEL"}</p><h2>{lang === "zh" ? "先核查线路，再确认执行方案。" : "A practical path from lane review to live execution."}</h2></div>
+      <div className="engagement-grid">{(lang === "zh" ? [["01","线路核查","提供码头、送货地址、柜型、重量、卸货方式和预计时间。"],["02","方案确认","确认服务范围、基础报价、可能附加费、付款条件及沟通联系人。"],["03","开始执行","建立订单资料与节点要求，由运营团队推进首票并复盘。"]] : [["01","Lane review","Share terminal, delivery point, container type, weight, unload method, and expected timing."],["02","Operating setup","Confirm scope, base pricing, potential accessorials, payment terms, and communication contacts."],["03","Live execution","Set the shipment record and milestone requirements, execute the first move, and review performance."]]).map(([n,h,p]) => <article key={n}><span>{n}</span><h3>{h}</h3><p>{p}</p></article>)}</div>
+    </section>
+
+    <section className="faq section">
+      <div><p className="kicker">{lang === "zh" ? "常见问题" : "PROCUREMENT FAQ"}</p><h2>{lang === "zh" ? "合作前需要了解的事项。" : "What teams ask before the first move."}</h2></div>
+      <div className="faq-list">{(lang === "zh" ? [["你们覆盖哪些地区？","目前重点覆盖纽约／新泽西港至新泽西、宾州东部和纽约都会区。具体邮编、柜型和重量需要逐条线路核查。"],["你们自己有车队吗？","PortLink负责统一协调与客户服务，并根据线路要求安排符合条件的承运车队。具体承运方会在执行资料中确认。"],["附加费怎样确认？","根据费用类型核对时间记录、照片、POD、EIR、仓库签字或码头文件等可用证据，再完成费用审核。"],["中国团队怎样沟通？","中文页面面向中国客户，可通过指定中文联系人提交询价、资料和异常需求；实际响应方式会在开户时确认。"]] : [["Where do you operate?","Our primary focus is the NY/NJ port complex to New Jersey, Eastern Pennsylvania, and the New York metro area. ZIP code, equipment, and weight are reviewed by lane."],["Do you operate your own fleet?","PortLink provides the operating coordination and customer interface, then assigns qualified motor-carrier capacity based on the specific move. The executing carrier is identified in shipment records."],["How are accessorials reviewed?","Available support may include timestamps, photos, POD, EIR, warehouse signatures, and terminal documentation, depending on the charge type."],["Can you support recurring volume?","Yes, recurring lanes can be reviewed for operating requirements, expected weekly volume, appointment patterns, and capacity planning before launch."]]).map(([q,a]) => <details key={q}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}</div>
     </section>
 
     <section className="carrier section" id="carriers">
