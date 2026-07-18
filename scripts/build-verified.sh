@@ -25,4 +25,17 @@ timeout \
   "${SITES_BUILD_TIMEOUT:-3m}" \
   "${vinext}" build
 
+# Vinext can emit duplicate compatibility flags when Wrangler merges the
+# generated deployment config. Cloudflare rejects duplicate flags with 10021.
+node --input-type=module - "${SITES_PROJECT_ROOT}/dist/server/wrangler.json" <<'NODE'
+import { readFile, writeFile } from "node:fs/promises";
+
+const configPath = process.argv[2];
+const config = JSON.parse(await readFile(configPath, "utf8"));
+if (Array.isArray(config.compatibility_flags)) {
+  config.compatibility_flags = [...new Set(config.compatibility_flags)];
+}
+await writeFile(configPath, JSON.stringify(config, null, 2) + "\n");
+NODE
+
 bash "${script_dir}/validate-artifact.sh"
