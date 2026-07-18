@@ -368,7 +368,8 @@ footer{background:#061419}
 .hero h1{font-size:clamp(49px,4.5vw,70px);font-weight:650;letter-spacing:-.04em;line-height:1.02}
 .hero h1 em{font-weight:650;color:#fff}
 .hero .lead{color:#d5e1e1;font-size:17px;max-width:630px}
-.hero-photo{min-height:690px;filter:saturate(.96) contrast(1.03);background-position:center 58%}
+.hero-photo{min-height:690px;filter:saturate(.96) contrast(1.03);background:none;overflow:hidden}
+.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 58%;display:block}
 .solid{background:#79be43;border-color:#79be43;color:#092f39;border-radius:0;text-transform:uppercase;font-size:12px;letter-spacing:.035em}
 .outline{border-color:white;border-radius:0;text-transform:uppercase;font-size:12px;letter-spacing:.035em}
 .factbar{min-height:145px;background:#073743;color:white;border:0;padding:0 max(30px,6vw)}
@@ -399,7 +400,11 @@ footer{background:#061419}
 .capability-grid article:hover:before{height:100%}
 .sectors{background:white}
 .coverage{background:#f4f6f3}
+.coverage-photo{background:#d8ddda;overflow:hidden}
+.coverage-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.coverage-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,34,42,.35),rgba(5,34,42,.02))}
 .coverage-photo>div{background:#073743}
+.coverage-photo>div{z-index:2}
 .coverage-photo small{color:#98d36b}
 .terminal-line{border-color:#bfcac7}
 .china{background:#073743;color:white}

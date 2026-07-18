@@ -138,7 +138,7 @@ export default function Home() {
         <p className="lead">{t.sub}</p>
         <div className="hero-buttons"><button className="solid" onClick={() => go("quote")}>{t.primary}</button><button className="outline" onClick={() => go("coverage")}>{t.secondary}</button></div>
       </div>
-      <div className="hero-photo"><div className="photo-label"><span>PORT NEWARK / ELIZABETH</span><b>LOCAL OPERATIONS.<br/>CLEAR OWNERSHIP.</b></div></div>
+      <div className="hero-photo"><img src="/assets/portlink-hero-v2.png" alt="Container drayage truck operating near the NY/NJ port complex" /><div className="photo-label"><span>PORT NEWARK / ELIZABETH</span><b>LOCAL OPERATIONS.<br/>CLEAR OWNERSHIP.</b></div></div>
     </section>
 
     <section className="factbar">{t.facts.map(([n,l]) => <div key={l}><strong>{n}</strong><span>{l}</span></div>)}</section>
@@ -170,7 +170,7 @@ export default function Home() {
     </section>
 
     <section className="coverage section" id="coverage">
-      <div className="coverage-photo"><div><small>CORE CORRIDOR</small><strong>NY/NJ PORT<br/>→ NJ / PA / NY</strong></div></div>
+      <div className="coverage-photo"><img src="/assets/portlink-terminal.png" alt="Container terminal and regional drayage operations" /><div><small>CORE CORRIDOR</small><strong>NY/NJ PORT<br/>→ NJ / PA / NY</strong></div></div>
       <div className="coverage-content"><p className="kicker">{t.coverageKicker}</p><h2>{t.coverageTitle}</h2><p>{t.coverageText}</p><div className="terminal-line">{t.terminals}</div>
         <div className="markets">{t.markets.map(([h,p]) => <div key={h}><h3>{h}</h3><p>{p}</p></div>)}</div>
       </div>
