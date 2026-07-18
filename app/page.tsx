@@ -119,7 +119,7 @@ export default function Home() {
       <a className="logo" href="#top"><span>P</span><b>PortLink</b></a>
       <button className="menu" onClick={() => setMenu(!menu)}>{menu ? "×" : "☰"}</button>
       <nav className={menu ? "open" : ""}>
-        {t.nav.map((x, i) => <button key={x} onClick={() => { go(["services","coverage","china","carriers"][i]); setMenu(false); }}>{x}</button>)}
+        {t.nav.map((x, i) => <a key={x} href={`${lang === "zh" ? "/zh" : ""}/${["services","coverage",lang === "zh" ? "about" : "standards","carriers"][i]}`} onClick={() => setMenu(false)}>{x}</a>)}
       </nav>
       <div className="actions">
         <button className="link-button" onClick={() => setTracking(true)}>{t.track}</button>
