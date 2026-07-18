@@ -11,8 +11,8 @@ const copy = {
     quote: "Request a Quote",
     track: "Request a Status Update",
     eyebrow: "NY/NJ PORT DRAYAGE • PA / NJ / NY",
-    title: <>Your container.<br/><em>Our responsibility.</em></>,
-    sub: "PortLink manages the handoff from terminal to warehouse with one accountable U.S. operations team, vetted capacity, and clear communication at every milestone.",
+    title: <>Managed drayage from the <em>NY/NJ port complex.</em></>,
+    sub: "A single operating partner for terminal coordination, carrier execution, warehouse delivery, documentation, and empty return across New Jersey, Eastern Pennsylvania, and the New York metro area.",
     primary: "Get a Drayage Quote",
     secondary: "See Our Coverage",
     facts: [["6", "major NY/NJ terminals"], ["3", "core delivery markets"], ["1", "accountable operating team"]],
@@ -53,8 +53,8 @@ const copy = {
     quote: "获取报价",
     track: "查询柜子进度",
     eyebrow: "纽约／新泽西港拖柜 • 覆盖PA、NJ、NY",
-    title: <>柜子交给我们，<br/><em>每个环节有人负责。</em></>,
-    sub: "从码头放行、提柜、送仓到还空，由美国本地运营团队统一协调。中文直接沟通，费用提前讲清，进度不用层层追问。",
+    title: <>纽约／新泽西港拖柜，<em>全流程统一管理。</em></>,
+    sub: "从码头协调、运力安排、仓库交付到文件归档与还空，由一个运营窗口负责。覆盖新泽西、宾州东部及纽约都会区。",
     primary: "获取拖柜报价",
     secondary: "查看服务区域",
     facts: [["6", "纽约／新泽西主要码头"], ["3", "核心配送区域"], ["1", "统一运营窗口"]],
@@ -155,6 +155,11 @@ export default function Home() {
       </div>
     </section>
 
+    <section className="capabilities section">
+      <div className="capabilities-head"><div><p className="kicker">{lang === "zh" ? "核心服务能力" : "CORE CAPABILITIES"}</p><h2>{lang === "zh" ? "围绕每一票进口柜，提供完整执行支持。" : "The operating capabilities behind every import move."}</h2></div><p>{lang === "zh" ? "根据具体码头、路线、设备和仓库要求确认服务方案。所有节点由统一运营窗口协调。" : "Service plans are confirmed by terminal, lane, equipment, timing, and warehouse requirements—with one operating desk coordinating the full move."}</p></div>
+      <div className="capability-grid">{(lang === "zh" ? [["码头协调","放行、Hold、LFD及提柜预约"],["仓库交付","预约、Live unload与Drop协调"],["设备安排","标准柜、超重及特殊底盘需求"],["Pre-pull管理","降低LFD与码头拥堵风险"],["还空跟踪","空柜场、截止时间及EIR归档"],["文件与费用","POD、EIR及附加费证据审核"]] : [["Terminal coordination","Release, holds, LFD, and pickup appointments"],["Warehouse delivery","Appointments, live unload, and drop coordination"],["Equipment planning","Standard, overweight, and chassis requirements"],["Pre-pull management","Planning around LFD and terminal congestion"],["Empty return control","Return location, cutoffs, and EIR records"],["Documents & charges","POD, EIR, and accessorial support review"]]).map(([h,p],i) => <article key={h}><span>0{i+1}</span><h3>{h}</h3><p>{p}</p></article>)}</div>
+    </section>
+
     <section className="coverage section" id="coverage">
       <div className="coverage-photo"><div><small>CORE CORRIDOR</small><strong>NY/NJ PORT<br/>→ NJ / PA / NY</strong></div></div>
       <div className="coverage-content"><p className="kicker">{t.coverageKicker}</p><h2>{t.coverageTitle}</h2><p>{t.coverageText}</p><div className="terminal-line">{t.terminals}</div>
@@ -188,7 +193,12 @@ export default function Home() {
       </form>
     </section>
 
-    <footer><a className="logo" href="#top"><span>P</span><b>PortLink</b></a><p>{t.footer}</p><small>© 2026 PortLink</small></footer>
+    <footer>
+      <div className="footer-brand"><a className="logo" href="#top"><span>P</span><b>PortLink</b></a><p>{t.footer}</p></div>
+      <div className="footer-col"><b>{lang === "zh" ? "服务区域" : "SERVICE AREA"}</b><span>New Jersey</span><span>Eastern Pennsylvania</span><span>New York Metro</span></div>
+      <div className="footer-col"><b>{lang === "zh" ? "联系运营团队" : "OPERATIONS CONTACT"}</b><a href="mailto:operations@portlink.com">operations@portlink.com</a><span>{lang === "zh" ? "周一至周五 · 美国东部时间" : "Monday–Friday · Eastern Time"}</span></div>
+      <div className="footer-bottom"><span>© 2026 PortLink. All rights reserved.</span><span>{lang === "zh" ? "具体服务能力及报价以线路审核为准。" : "Service availability and pricing are subject to lane review."}</span></div>
+    </footer>
 
     {tracking && <div className="modal-bg" onClick={() => setTracking(false)}><div className="modal-card" onClick={e=>e.stopPropagation()}><button className="close" onClick={() => setTracking(false)}>×</button><p className="kicker">PORTLINK OPERATIONS</p><h2>{t.trackTitle}</h2><p>{t.trackText}</p><form onSubmit={submitTrack}><label>{t.container}</label><input name="container" placeholder="MSCU1234567" required/><label>{t.fields[1]}</label><input name="email" type="email" required/><button className="solid" type="submit">{t.track}</button></form></div></div>}
   </main>;

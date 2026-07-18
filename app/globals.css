@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-:root{--ink:#071113;--ink2:#0d2023;--teal:#35d3ca;--cream:#f2f3ee;--paper:#fafbf8;--text:#eef7f6;--muted:#9cb1b2;--line:rgba(181,220,217,.22)}
+:root{--ink:#071216;--ink2:#102328;--teal:#2db8b2;--cream:#f1f3f1;--paper:#fafbf9;--text:#f2f6f5;--muted:#a2b1b3;--line:rgba(181,210,209,.20)}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -8,7 +8,7 @@ body{margin:0;background:var(--ink);color:var(--text);font-family:var(--font-gei
 button,input,textarea{font:inherit}
 button{cursor:pointer}
 p{line-height:1.65}
-.header{height:88px;display:flex;align-items:center;gap:46px;padding:0 max(34px,4vw);position:absolute;inset:0 0 auto;z-index:20;border-bottom:1px solid rgba(255,255,255,.12)}
+.header{height:92px;display:flex;align-items:center;gap:46px;padding:0 max(34px,5vw);position:absolute;inset:0 0 auto;z-index:20;border-bottom:1px solid rgba(255,255,255,.16);background:linear-gradient(180deg,rgba(3,13,17,.7),transparent)}
 .logo{display:flex;align-items:center;gap:11px;color:white;text-decoration:none;font-size:26px}
 .logo span{width:34px;height:34px;display:grid;place-items:center;background:var(--teal);color:#051315;font-weight:900;transform:skew(-10deg)}
 .header nav{display:flex;gap:34px;margin:auto}
@@ -29,7 +29,7 @@ p{line-height:1.65}
 .hero{min-height:870px;display:grid;grid-template-columns:48% 52%;background:#081416}
 .hero-copy{padding:170px 5vw 100px max(34px,6vw);display:flex;flex-direction:column;justify-content:center}
 .kicker{color:var(--teal);font-size:12px;letter-spacing:.17em;font-weight:800;text-transform:uppercase;margin:0 0 22px}
-.hero h1{font-size:clamp(64px,6vw,104px);line-height:.92;letter-spacing:-.065em;margin:0 0 32px;max-width:850px}
+.hero h1{font-size:clamp(60px,5.3vw,88px);line-height:.98;letter-spacing:-.055em;margin:0 0 32px;max-width:900px}
 .hero h1 em{font-style:normal;color:var(--teal)}
 .hero h1.zh{font-size:clamp(55px,5.2vw,86px);line-height:1.08;letter-spacing:-.045em}
 .lead{font-size:20px;color:#b7c8c8;max-width:660px;margin:0 0 38px}
@@ -72,6 +72,14 @@ p{line-height:1.65}
 .workflow-steps span{font-size:11px;color:var(--teal)}
 .workflow-steps h3{font-size:21px;margin:48px 0 9px}
 .workflow-steps p{font-size:14px;margin:0}
+.capabilities{background:var(--cream);color:#0a171a}
+.capabilities-head{display:grid;grid-template-columns:1.2fr .8fr;gap:9vw;align-items:end}
+.capabilities-head>p{color:#586b6d;font-size:18px;margin:0}
+.capability-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:75px;border-top:1px solid #b7c3c2;border-left:1px solid #b7c3c2}
+.capability-grid article{min-height:245px;padding:28px 30px;border-right:1px solid #b7c3c2;border-bottom:1px solid #b7c3c2}
+.capability-grid span{font-size:11px;color:#187c78}
+.capability-grid h3{font-size:23px;margin:54px 0 10px}
+.capability-grid p{color:#5b6c6e;margin:0;font-size:15px}
 .coverage{padding:0;display:grid;grid-template-columns:45% 55%;background:var(--cream);color:#071113}
 .coverage-photo{min-height:850px;background:linear-gradient(0deg,rgba(5,18,20,.35),rgba(5,18,20,.08)),url('/assets/portlink-terminal.png') center/cover;position:relative}
 .coverage-photo>div{position:absolute;left:55px;bottom:55px;background:#071719;color:white;padding:26px 30px}
@@ -113,9 +121,12 @@ p{line-height:1.65}
 .quote textarea{resize:vertical}
 .quote .note{font-size:12px;margin:0;align-self:center;color:#718080}
 .quote form button{justify-self:end}
-footer{min-height:150px;padding:35px max(34px,6vw);display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;border-top:1px solid var(--line)}
-footer p{text-align:center;color:#819899}
-footer small{text-align:right;color:#617779}
+footer{padding:70px max(34px,6vw) 28px;display:grid;grid-template-columns:1.3fr .7fr 1fr;gap:7vw;border-top:1px solid var(--line);background:#050d10}
+.footer-brand p{max-width:370px;color:#819496;margin-top:24px}
+.footer-col{display:flex;flex-direction:column;gap:10px;color:#829496;font-size:14px}
+.footer-col b{font-size:11px;letter-spacing:.16em;color:#d9e3e3;margin-bottom:12px}
+.footer-col a{color:var(--teal);text-decoration:none;font-weight:700}
+.footer-bottom{grid-column:1/-1;display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:25px;margin-top:30px;color:#617477;font-size:12px}
 .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.76);z-index:50;display:grid;place-items:center;padding:20px;backdrop-filter:blur(8px)}
 .modal-card{width:min(100%,560px);background:var(--paper);color:#071113;padding:48px;position:relative}
 .modal-card h2{font-size:40px;line-height:1.05;letter-spacing:-.04em;margin:8px 0 16px}
@@ -132,9 +143,10 @@ footer small{text-align:right;color:#617779}
 .hero-photo{min-height:590px}
 .proof-strip{grid-template-columns:1fr 1fr}
 .proof-strip div:nth-child(2){border-right:0}
-.section-top,.workflow-heading{grid-template-columns:1fr;gap:30px}
+.section-top,.workflow-heading,.capabilities-head{grid-template-columns:1fr;gap:30px}
 .workflow-steps{grid-template-columns:1fr 1fr}
 .workflow-steps article{border-bottom:1px solid var(--line)}
+.capability-grid{grid-template-columns:1fr 1fr}
 .coverage{grid-template-columns:1fr}
 .coverage-photo{min-height:580px}
 .china,.control{grid-template-columns:1fr}
@@ -166,6 +178,8 @@ footer small{text-align:right;color:#617779}
 .workflow-steps h3{margin:24px 0 7px}
 .section{padding:80px 20px}
 .section h2{font-size:42px}
+.capability-grid{grid-template-columns:1fr;margin-top:42px}
+.capability-grid article{min-height:190px}
 .service-cards{grid-template-columns:1fr;margin-top:45px}
 .service-cards article,.service-cards article+article{padding:34px 0;min-height:auto;border-right:0;border-bottom:1px solid var(--line)}
 .service-cards h3{margin-top:30px}
@@ -182,8 +196,8 @@ footer small{text-align:right;color:#617779}
 .quote form div{grid-column:1/-1}
 .quote form button{justify-self:stretch}
 .quote .note{font-size:12px}
-footer{grid-template-columns:1fr;gap:15px;text-align:center}
-footer p,footer small{text-align:center}
+footer{grid-template-columns:1fr;gap:38px;text-align:left;padding-top:55px}
+.footer-bottom{flex-direction:column;gap:10px}
 .modal-card{padding:40px 23px}
 }
 
