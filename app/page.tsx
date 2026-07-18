@@ -1,153 +1,178 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 type Lang = "en" | "zh";
 
 const copy = {
   en: {
-    nav: ["Services", "Coverage", "Visibility", "Carriers", "About"],
-    quote: "Get a Quote",
-    track: "Track a Container",
-    eyebrow: "NY/NJ PORT DRAYAGE · MANAGED END TO END",
-    title: <>Drayage, managed<br />with control.</>,
-    sub: "One accountable partner from port pickup to final delivery—backed by vetted capacity, milestone visibility, and standardized execution.",
-    chips: ["Vetted carrier network", "Milestone visibility", "POD & EIR control"],
-    active: "18 active",
-    live: "Live Operations",
-    routes: [["APM Terminal", "Bethlehem, PA", "IN TRANSIT"], ["Maher Terminal", "Edison, NJ", "APPOINTMENT SET"], ["Port Newark", "Allentown, PA", "DELIVERED"]],
-    stats: [["97.4%", "On-time milestones"], ["99%", "Documents complete"]],
-    sectionKicker: "ONE TEAM. EVERY MILESTONE.",
-    sectionTitle: "Port-to-warehouse execution without the blind spots.",
-    sectionText: "PortLink coordinates terminals, appointments, carriers, documents, and exceptions through one operating layer. Your team gets answers—not another list of phone numbers.",
-    cards: [
-      ["01", "Port control", "LFD, holds, appointments, pre-pulls, and empty returns monitored from one desk."],
-      ["02", "Vetted capacity", "Qualified carriers matched to the lane, equipment, timing, and service requirement."],
-      ["03", "Proof, not promises", "Milestone updates, POD, EIR, and accessorial evidence organized load by load."],
+    nav: ["Services", "Coverage", "For China Teams", "Carriers"],
+    quote: "Request a Quote",
+    track: "Request a Status Update",
+    eyebrow: "NY/NJ PORT DRAYAGE • PA / NJ / NY",
+    title: <>Your container.<br/><em>Our responsibility.</em></>,
+    sub: "PortLink manages the handoff from terminal to warehouse with one accountable U.S. operations team, vetted capacity, and clear communication at every milestone.",
+    primary: "Get a Drayage Quote",
+    secondary: "See Our Coverage",
+    facts: [["6", "major NY/NJ terminals"], ["3", "core delivery markets"], ["EN / 中文", "bilingual coordination"]],
+    servicesKicker: "MANAGED DRAYAGE",
+    servicesTitle: "One operating team from port release to empty return.",
+    servicesIntro: "We do more than dispatch a truck. PortLink coordinates the terminal, carrier, driver, warehouse appointment, documents, and exceptions—so your team always knows who owns the next step.",
+    services: [
+      ["01", "Before pickup", "Release and hold checks, LFD monitoring, terminal appointments, equipment planning, and pre-pull coordination."],
+      ["02", "On the road", "Qualified carrier assignment, milestone updates, delivery appointment coordination, and fast exception escalation."],
+      ["03", "After delivery", "POD and EIR collection, empty-return monitoring, and documented review of accessorial charges."]
     ],
-    coverageTitle: "Built for the NY/NJ port complex.",
-    coverageText: "Focused coverage from the six major terminals to warehouses across New Jersey, Eastern Pennsylvania, and the New York metro area.",
-    areas: ["Port Newark / Elizabeth", "APM · Maher · PNCT", "Bethlehem · Allentown", "Central & North Jersey", "New York Metro"],
-    cnTitle: "A better U.S. drayage connection for cross-border teams.",
-    cnText: "For importers and e-commerce teams operating from China, PortLink replaces fragmented handoffs with bilingual coordination, direct carrier access, clear charges, and U.S.-based exception management.",
-    cnPoints: ["Bilingual operating support", "Clear accessorial approval", "Direct status visibility", "U.S. warehouse coordination"],
-    carrierTitle: "Good carriers deserve better freight.",
-    carrierText: "Join a standards-led network with clear dispatch, faster documents, consistent communication, and opportunities to grow your NY/NJ port volume.",
-    join: "Join the Network",
-    finalTitle: "Move your next container with clarity.",
-    finalText: "Tell us the terminal, delivery location, equipment, and timing. Our team will return a clear operating plan and quote.",
-    form: ["Name", "Work email", "Company", "Container / lane details"],
-    submit: "Request a Quote",
-    trackLabel: "Container number",
-    trackHint: "Enter a container number to request a status update.",
-    trackButton: "Check status",
-    footer: "Managed drayage for the NY/NJ port complex.",
+    coverageKicker: "LOCAL FOCUS. DEEPER CONTROL.",
+    coverageTitle: "Built around the NY/NJ port complex.",
+    coverageText: "Focused lanes create better carrier coverage, faster exception handling, and more consistent execution than a broad directory of phone numbers.",
+    terminals: "Port Newark • Elizabeth • APM • Maher • PNCT • GCT Bayonne",
+    markets: [["New Jersey", "North, Central, and key warehouse corridors"], ["Pennsylvania", "Bethlehem, Allentown, Lehigh Valley, and Eastern PA"], ["New York", "Metro-area delivery by lane review"]],
+    chinaKicker: "FOR CHINA-BASED IMPORTERS",
+    chinaTitle: "U.S. local execution without another layer of confusion.",
+    chinaText: "Keep your warehouse relationship, but take control of the drayage. PortLink gives cross-border teams a direct U.S. operating window for pricing, scheduling, status, documents, and exception management.",
+    chinaPoints: ["Bilingual operating support", "Clear quote and charge review", "Direct milestone communication", "U.S. warehouse coordination"],
+    carrierKicker: "CARRIER PARTNERS",
+    carrierTitle: "Reliable freight for carriers who execute well.",
+    carrierText: "We work with compliant motor carriers and qualified owner-operators who value clear dispatch, fast communication, clean documentation, and long-term volume.",
+    join: "Join the Carrier Network",
+    quoteKicker: "START WITH ONE LANE",
+    quoteTitle: "Tell us what needs to move.",
+    quoteText: "Share the terminal, delivery ZIP code, container type, and timing. Our U.S. team will review the lane and respond with a clear plan.",
+    fields: ["Name", "Work email", "Company", "Terminal, delivery ZIP, container type, timing"],
+    send: "Prepare Quote Request",
+    emailNote: "Your email app will open with the request prepared.",
+    trackTitle: "Request a container status update",
+    trackText: "Enter the container number and your email. Our operations team will verify the latest available status.",
+    container: "Container number",
+    footer: "Managed NY/NJ port drayage. One team. Clear ownership."
   },
   zh: {
-    nav: ["拖柜服务", "服务区域", "全程跟踪", "车队合作", "关于我们"],
+    nav: ["拖柜服务", "服务区域", "中国客户", "车队合作"],
     quote: "获取报价",
-    track: "查询集装箱",
-    eyebrow: "纽约／新泽西港拖柜 · 全流程托管",
-    title: <>美国拖柜，<br />进度看得见，异常有人管。</>,
-    sub: "从码头提柜、仓库预约到还空，全程由美国本地团队统一协调。中文沟通、费用清楚、节点可查，不再隔着海外仓反复转问。",
-    chips: ["合规车队网络", "关键节点可视", "POD／EIR归档"],
-    active: "18票执行中",
-    live: "实时运营中心",
-    routes: [["APM码头", "宾州伯利恒", "运输中"], ["Maher码头", "新泽西Edison", "已预约"], ["纽瓦克港", "宾州Allentown", "已送达"]],
-    stats: [["97.4%", "节点准时率"], ["99%", "文件完整率"]],
-    sectionKicker: "一个窗口，管完整个拖柜流程",
-    sectionTitle: "不只是帮您找一辆车，而是把每个环节真正管起来。",
-    sectionText: "PortLink统一协调码头、车队、司机、仓库预约、文件和异常。您不需要在中国时差下追着不同的人问进度，打开系统即可看到当前状态。",
-    cards: [
-      ["01", "码头风险管理", "持续关注LFD、Hold、提柜预约、Pre-pull和空柜归还，降低滞箱与额外费用风险。"],
-      ["02", "直接整合美国运力", "减少拖柜环节不必要的层层转包和加价，同时保留可靠的备用车队。"],
-      ["03", "附加费有据可查", "等待费、底盘费等附加费用需有时间、照片或文件依据，确认后再进入账单。"],
+    track: "查询柜子进度",
+    eyebrow: "纽约／新泽西港拖柜 • 覆盖PA、NJ、NY",
+    title: <>柜子交给我们，<br/><em>每个环节有人负责。</em></>,
+    sub: "从码头放行、提柜、送仓到还空，由美国本地运营团队统一协调。中文直接沟通，费用提前讲清，进度不用层层追问。",
+    primary: "获取拖柜报价",
+    secondary: "查看服务区域",
+    facts: [["6", "纽约／新泽西主要码头"], ["3", "核心配送区域"], ["中 / EN", "中美双语协调"]],
+    servicesKicker: "全流程拖柜管理",
+    servicesTitle: "不是只帮您找辆车，而是把整个拖柜流程管起来。",
+    servicesIntro: "PortLink统一对接码头、车队、司机和收货仓。从LFD、预约到POD、EIR和还空，每一步都有明确负责人，发生异常也有人在美国现场协调。",
+    services: [
+      ["01", "提柜之前", "核查放行与Hold、关注LFD、安排码头预约、确认柜型和底盘，并协调需要的Pre-pull。"],
+      ["02", "运输途中", "匹配合规运力、更新关键节点、协调仓库预约，遇到延误或异常及时处理并同步。"],
+      ["03", "送达之后", "收集POD与EIR、跟进空柜归还；等待费等附加费用先核对证据，再进入账单。"]
     ],
-    coverageTitle: "先把纽约／新泽西港做深、做稳。",
-    coverageText: "覆盖纽约／新泽西港主要码头，重点服务新泽西、宾州东部及纽约都会区仓库。路线集中，调度更稳定，价格更有竞争力。",
-    areas: ["Newark／Elizabeth港区", "APM · Maher · PNCT", "Bethlehem · Allentown", "新泽西中北部", "纽约都会区"],
-    cnTitle: "为人在中国、货在美国的团队补上本地执行能力。",
-    cnText: "您可以保留现有海外仓，但不必再让海外仓控制拖柜采购。PortLink直接连接美国合规运力，并替您处理英文沟通、仓库预约、进度跟踪和异常协调。",
-    cnPoints: ["北京时间中文对接", "价格项目提前说清", "柜量进度集中查看", "美国本地异常处理"],
-    carrierTitle: "有能力的车队，应该获得更稳定的订单。",
-    carrierText: "我们为华人车队和合规Owner Operator提供清晰派单、标准节点、文件管理和更多纽约港业务机会，用服务表现换取长期货量。",
+    coverageKicker: "先把一片区域做深做稳",
+    coverageTitle: "专注纽约／新泽西港及周边仓库线路。",
+    coverageText: "线路集中，才能建立稳定车队、熟悉码头规则并快速处理异常。我们不做一张全国车队电话表，而是把纽约港到周边仓库真正执行好。",
+    terminals: "Port Newark • Elizabeth • APM • Maher • PNCT • GCT Bayonne",
+    markets: [["新泽西州", "覆盖北部、中部及主要仓库走廊"], ["宾夕法尼亚州", "Bethlehem、Allentown、Lehigh Valley及宾州东部"], ["纽约地区", "纽约都会区按具体路线确认"]],
+    chinaKicker: "服务中国跨境企业",
+    chinaTitle: "人在中国，也能直接掌握美国拖柜进度。",
+    chinaText: "海外仓仍然负责收货和仓储，但拖柜不必再经过层层转包。PortLink为您提供美国本地的报价、调度、跟踪、文件和异常处理窗口。",
+    chinaPoints: ["中文直接对接", "报价与附加费提前说明", "关键节点主动同步", "美国仓库预约协调"],
+    carrierKicker: "车队合作",
+    carrierTitle: "服务做得好的车队，应该获得更稳定的货量。",
+    carrierText: "我们欢迎资质和保险齐全的车队及合规Owner Operator。清晰派单、及时沟通、文件规范、表现稳定，就有机会获得长期纽约港业务。",
     join: "申请加入车队网络",
-    finalTitle: "把下一个柜子交给更清楚的流程。",
-    finalText: "告诉我们码头、送货地址、柜型和时间要求，美国团队会提供清晰的执行方案与报价。",
-    form: ["姓名", "工作邮箱／微信", "公司名称", "柜号、码头、送货地址或路线需求"],
-    submit: "提交询价",
-    trackLabel: "集装箱号",
-    trackHint: "输入集装箱号，向运营团队查询最新状态。",
-    trackButton: "查询进度",
-    footer: "纽约／新泽西港全流程拖柜服务。",
-  },
+    quoteKicker: "先从一条线路开始",
+    quoteTitle: "告诉我们您的拖柜需求。",
+    quoteText: "提供码头、送货邮编、柜型和时间要求，美国运营团队会核查线路并回复清晰方案。",
+    fields: ["姓名", "邮箱", "公司名称", "码头、送货邮编、柜型、时间要求"],
+    send: "生成询价邮件",
+    emailNote: "点击后会打开您的邮箱，并自动填好询价内容。",
+    trackTitle: "查询柜子最新进度",
+    trackText: "输入柜号和邮箱，美国运营团队核实后回复最新可用状态。",
+    container: "集装箱号",
+    footer: "纽约／新泽西港全流程拖柜。一个团队，责任清楚。"
+  }
 };
 
 export default function Home() {
   const [lang, setLang] = useState<Lang>("en");
-  const [tracking, setTracking] = useState(false);
   const [menu, setMenu] = useState(false);
+  const [tracking, setTracking] = useState(false);
   const t = copy[lang];
 
-  const scroll = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const mail = (subject: string, body: string) => {
+    window.location.href = `mailto:operations@portlink.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+  const submitQuote = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const d = new FormData(e.currentTarget);
+    mail(`PortLink quote request — ${d.get("company") || d.get("name")}`, `Name: ${d.get("name")}\nEmail: ${d.get("email")}\nCompany: ${d.get("company")}\n\nLane details:\n${d.get("details")}`);
+  };
+  const submitTrack = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const d = new FormData(e.currentTarget);
+    mail(`Container status request — ${d.get("container")}`, `Container: ${d.get("container")}\nReply to: ${d.get("email")}`);
+  };
 
-  return (
-    <main>
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="PortLink home"><span className="brand-mark">P</span><span>PortLink</span></a>
-        <button className="menu-button" onClick={() => setMenu(!menu)} aria-label="Toggle menu">{menu ? "×" : "☰"}</button>
-        <nav className={menu ? "nav open" : "nav"}>
-          {t.nav.map((item, i) => <button key={item} onClick={() => { scroll(["services", "coverage", "visibility", "carriers", "about"][i]); setMenu(false); }}>{item}</button>)}
-        </nav>
-        <div className="header-actions">
-          <div className="language" aria-label="Language"><button className={lang === "en" ? "active" : ""} onClick={() => setLang("en")}>EN</button><span>/</span><button className={lang === "zh" ? "active" : ""} onClick={() => setLang("zh")}>中文</button></div>
-          <button className="button ghost" onClick={() => setTracking(true)}>{t.track}</button>
-          <button className="button primary" onClick={() => scroll("quote")}>{t.quote}</button>
-        </div>
-      </header>
+  return <main>
+    <header className="header">
+      <a className="logo" href="#top"><span>P</span><b>PortLink</b></a>
+      <button className="menu" onClick={() => setMenu(!menu)}>{menu ? "×" : "☰"}</button>
+      <nav className={menu ? "open" : ""}>
+        {t.nav.map((x, i) => <button key={x} onClick={() => { go(["services","coverage","china","carriers"][i]); setMenu(false); }}>{x}</button>)}
+      </nav>
+      <div className="actions">
+        <div className="langs"><button className={lang==="en"?"active":""} onClick={() => setLang("en")}>EN</button><span>/</span><button className={lang==="zh"?"active":""} onClick={() => setLang("zh")}>中文</button></div>
+        <button className="link-button" onClick={() => setTracking(true)}>{t.track}</button>
+        <button className="solid small" onClick={() => go("quote")}>{t.quote}</button>
+      </div>
+    </header>
 
-      <section className="hero" id="top">
-        <div className="hero-shade" />
-        <div className="hero-content">
-          <p className="eyebrow">{t.eyebrow}</p>
-          <h1 className={lang === "zh" ? "zh-title" : ""}>{t.title}</h1>
-          <p className="hero-copy">{t.sub}</p>
-          <div className="hero-actions"><button className="button primary large" onClick={() => scroll("quote")}>{t.quote}</button><button className="button ghost large" onClick={() => setTracking(true)}>{t.track}</button></div>
-          <div className="trust-row">{t.chips.map((x, i) => <div key={x}><span>{["✓", "⌖", "▤"][i]}</span>{x}</div>)}</div>
-        </div>
-        <aside className="ops-panel" aria-label={t.live}>
-          <div className="ops-head"><h2>{t.live}</h2><span><i />{t.active}</span></div>
-          <div className="routes">{t.routes.map((r, i) => <div className="route" key={r[0]}><span>{r[0]}</span><b>→</b><span>{r[1]}</span><em className={`status s${i}`}>{r[2]}</em></div>)}</div>
-          <div className="stats">{t.stats.map((s) => <div key={s[1]}><strong>{s[0]}</strong><span>{s[1]}</span></div>)}</div>
-          <div className="route-map"><div className="route-line" /><span className="node n1">APM</span><span className="node n2">Edison</span><span className="node n3">Bethlehem</span><span className="node n4">Allentown</span><div className="map-label">NJ · PA OPERATING CORRIDOR</div></div>
-        </aside>
-      </section>
+    <section className="hero" id="top">
+      <div className="hero-copy">
+        <p className="kicker">{t.eyebrow}</p>
+        <h1 className={lang==="zh"?"zh":""}>{t.title}</h1>
+        <p className="lead">{t.sub}</p>
+        <div className="hero-buttons"><button className="solid" onClick={() => go("quote")}>{t.primary}</button><button className="outline" onClick={() => go("coverage")}>{t.secondary}</button></div>
+      </div>
+      <div className="hero-photo"><div className="photo-label"><span>PORT NEWARK / ELIZABETH</span><b>LOCAL OPERATIONS.<br/>CLEAR OWNERSHIP.</b></div></div>
+    </section>
 
-      <section className="intro section" id="services">
-        <div className="section-heading"><p className="eyebrow">{t.sectionKicker}</p><h2>{t.sectionTitle}</h2><p>{t.sectionText}</p></div>
-        <div className="service-grid">{t.cards.map((c) => <article key={c[0]}><span>{c[0]}</span><h3>{c[1]}</h3><p>{c[2]}</p></article>)}</div>
-      </section>
+    <section className="factbar">{t.facts.map(([n,l]) => <div key={l}><strong>{n}</strong><span>{l}</span></div>)}</section>
 
-      <section className="coverage section" id="coverage">
-        <div className="coverage-map"><span className="terminal-dot d1" /><span className="terminal-dot d2" /><span className="terminal-dot d3" /><div className="coverage-route" /><small>PORT NEWARK</small><strong>NY/NJ → PA</strong></div>
-        <div className="coverage-copy"><p className="eyebrow">PORT COVERAGE</p><h2>{t.coverageTitle}</h2><p>{t.coverageText}</p><div className="area-list">{t.areas.map(x => <span key={x}>↗ {x}</span>)}</div></div>
-      </section>
+    <section className="services section" id="services">
+      <div className="section-top"><div><p className="kicker">{t.servicesKicker}</p><h2>{t.servicesTitle}</h2></div><p>{t.servicesIntro}</p></div>
+      <div className="service-cards">{t.services.map(([n,h,p]) => <article key={n}><span>{n}</span><h3>{h}</h3><p>{p}</p></article>)}</div>
+    </section>
 
-      <section className="crossborder section" id="visibility">
-        <div><p className="eyebrow">CHINA ↔ UNITED STATES</p><h2>{t.cnTitle}</h2><p>{t.cnText}</p></div>
-        <div className="point-grid">{t.cnPoints.map((p, i) => <div key={p}><span>0{i + 1}</span><strong>{p}</strong></div>)}</div>
-      </section>
+    <section className="coverage section" id="coverage">
+      <div className="coverage-photo"><div><small>CORE CORRIDOR</small><strong>NY/NJ PORT<br/>→ NJ / PA / NY</strong></div></div>
+      <div className="coverage-content"><p className="kicker">{t.coverageKicker}</p><h2>{t.coverageTitle}</h2><p>{t.coverageText}</p><div className="terminal-line">{t.terminals}</div>
+        <div className="markets">{t.markets.map(([h,p]) => <div key={h}><h3>{h}</h3><p>{p}</p></div>)}</div>
+      </div>
+    </section>
 
-      <section className="carrier section" id="carriers"><div><p className="eyebrow">CARRIER NETWORK</p><h2>{t.carrierTitle}</h2><p>{t.carrierText}</p></div><button className="button primary large" onClick={() => scroll("quote")}>{t.join}</button></section>
+    <section className="china section" id="china">
+      <div className="china-copy"><p className="kicker">{t.chinaKicker}</p><h2>{t.chinaTitle}</h2><p>{t.chinaText}</p></div>
+      <div className="china-points">{t.chinaPoints.map((x,i) => <div key={x}><span>0{i+1}</span><b>{x}</b></div>)}</div>
+    </section>
 
-      <section className="quote section" id="quote">
-        <div><p className="eyebrow">START A CONVERSATION</p><h2>{t.finalTitle}</h2><p>{t.finalText}</p><a href="mailto:operations@portlink.com">operations@portlink.com</a></div>
-        <form onSubmit={(e) => e.preventDefault()}><input aria-label={t.form[0]} placeholder={t.form[0]} /><input aria-label={t.form[1]} placeholder={t.form[1]} type="email" /><input aria-label={t.form[2]} placeholder={t.form[2]} /><textarea aria-label={t.form[3]} placeholder={t.form[3]} rows={4} /><button className="button primary large" type="submit">{t.submit}</button></form>
-      </section>
+    <section className="carrier section" id="carriers">
+      <div><p className="kicker">{t.carrierKicker}</p><h2>{t.carrierTitle}</h2><p>{t.carrierText}</p></div>
+      <button className="light-button" onClick={() => go("quote")}>{t.join} <span>↗</span></button>
+    </section>
 
-      <footer id="about"><a className="brand" href="#top"><span className="brand-mark">P</span><span>PortLink</span></a><p>{t.footer}</p><div>© 2026 PortLink · NY/NJ</div></footer>
+    <section className="quote section" id="quote">
+      <div><p className="kicker">{t.quoteKicker}</p><h2>{t.quoteTitle}</h2><p>{t.quoteText}</p><a href="mailto:operations@portlink.com">operations@portlink.com</a></div>
+      <form onSubmit={submitQuote}>
+        <div><label>{t.fields[0]}</label><input name="name" required /></div>
+        <div><label>{t.fields[1]}</label><input name="email" type="email" required /></div>
+        <div className="wide"><label>{t.fields[2]}</label><input name="company" required /></div>
+        <div className="wide"><label>{t.fields[3]}</label><textarea name="details" rows={4} required /></div>
+        <p className="note">{t.emailNote}</p><button className="solid" type="submit">{t.send}</button>
+      </form>
+    </section>
 
-      {tracking && <div className="modal-backdrop" onClick={() => setTracking(false)}><div className="modal" onClick={e => e.stopPropagation()}><button className="modal-close" onClick={() => setTracking(false)}>×</button><p className="eyebrow">LIVE VISIBILITY</p><h2>{t.track}</h2><p>{t.trackHint}</p><label>{t.trackLabel}</label><input placeholder="MSCU1234567" autoFocus /><button className="button primary large">{t.trackButton}</button></div></div>}
-    </main>
-  );
+    <footer><a className="logo" href="#top"><span>P</span><b>PortLink</b></a><p>{t.footer}</p><small>© 2026 PortLink</small></footer>
+
+    {tracking && <div className="modal-bg" onClick={() => setTracking(false)}><div className="modal-card" onClick={e=>e.stopPropagation()}><button className="close" onClick={() => setTracking(false)}>×</button><p className="kicker">PORTLINK OPERATIONS</p><h2>{t.trackTitle}</h2><p>{t.trackText}</p><form onSubmit={submitTrack}><label>{t.container}</label><input name="container" placeholder="MSCU1234567" required/><label>{t.fields[1]}</label><input name="email" type="email" required/><button className="solid" type="submit">{t.track}</button></form></div></div>}
+  </main>;
 }
